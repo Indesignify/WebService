@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.spb.iac.model.dto.CreatePersonDTO;
 import ru.spb.iac.model.dto.UpdatePersonDTO;
 import ru.spb.iac.model.entities.Person;
-import ru.spb.iac.repository.PersonRepository;
 import ru.spb.iac.service.PersonService;
 
 import javax.validation.Valid;
@@ -15,9 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/persons")
 public class PersonController {
-
-    @Autowired
-    PersonRepository personRepository;
 
     @Autowired
     PersonService personService;
