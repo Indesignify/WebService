@@ -1,4 +1,4 @@
-package ru.spb.iac.model.controller;
+package ru.spb.iac.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
