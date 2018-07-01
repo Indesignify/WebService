@@ -27,10 +27,10 @@ public class PersonServiceImpl implements PersonService {
     public Person createPerson(CreatePersonDTO newPersonDTO) {
 
         if (newPersonDTO.getId() != null) {
-            if (personRepository.existsById(newPersonDTO.getId())) {
-                throw new IllegalArgumentException("Person with id " + newPersonDTO.getId()
-                        + " already exists, try again!");
-            }
+//            if (personRepository.existsById(newPersonDTO.getId())) {
+//                throw new IllegalArgumentException("Person with id " + newPersonDTO.getId()
+//                        + " already exists, try again!");
+//            }
 
             Person newPerson = Person.builder()
                                 .id(newPersonDTO.getId())
@@ -54,22 +54,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person updatePerson(Integer id, UpdatePersonDTO updatePersonDTO) {
+    public Person updatePerson(UpdatePersonDTO updatePersonDTO) {
 
-        if (id != null) {
-            updatePersonDTO.setId(id);
+        Person updatedPerson = personConverter.convertUpdatePersonDTOToPerson(updatePersonDTO);
 
-            if (!personRepository.existsById(updatePersonDTO.getId())) {
-                throw new IllegalArgumentException("No person with id " + updatePersonDTO.getId()
-                            + " exists, please try again!");
-            }
+        return personRepository.save(updatedPerson);
 
-            Person updatedPerson = personConverter.convertUpdatePersonDTOToPerson(updatePersonDTO);
-
-            return personRepository.save(updatedPerson);
-        } else {
-            throw new IllegalArgumentException("Please specify id of the person you want to be updated!");
-        }
     }
 
     @Override
@@ -106,4 +96,10 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> handlePersons(List<Person> persons) {
         return null;
     }
+
+    @Override
+    public boolean isPersonExist(Integer id) {
+        return personRepository.existsById(id);
+    }
+
 }

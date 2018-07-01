@@ -10,7 +10,7 @@ public interface PersonService {
 
     Person createPerson(CreatePersonDTO newPersonDTO);
 
-    Person updatePerson(Integer id, UpdatePersonDTO updatePersonDTO);
+    Person updatePerson(UpdatePersonDTO updatePersonDTO);
 
     Person getPersonById(Integer id);
 
@@ -19,5 +19,7 @@ public interface PersonService {
     void deletePersonById(Integer id);
 
     List<Person> handlePersons(List<Person> persons);
+
+    boolean isPersonExist(Integer id);
 
 }
