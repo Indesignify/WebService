@@ -1,4 +1,4 @@
-package ru.spb.iac.web.controller;
+package ru.spb.iac.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,20 +18,15 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/persons")
-public class PersonController {
+@RequestMapping("/rest-api")
+public class PersonRestController {
 
-    private final Logger LOG = LoggerFactory.getLogger(PersonController.class);
+    private final Logger LOG = LoggerFactory.getLogger(PersonRestController.class);
 
     @Autowired
     PersonService personService;
 
-    @GetMapping
-    public String getHello() {
-        return "Testing hello!";
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/person", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createPerson(
             @Valid @RequestBody CreatePersonDTO createPersonDTO,
             UriComponentsBuilder uriComponentsBuilder) {
@@ -55,9 +50,14 @@ public class PersonController {
 
     }
 
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/person/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> updatePerson(@PathVariable("id") Integer id,
                                @Valid @RequestBody UpdatePersonDTO updatePersonDTO) {
+
+        if (id == null) {
+            LOG.info("ID was not specified!");
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
 
         LOG.info("Updating person: {}", updatePersonDTO);
         Person currentPerson = personService.getPersonById(id);
@@ -73,14 +73,14 @@ public class PersonController {
 
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/person/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable("id") Integer id) {
 
-        LOG.info("getting person with id: {}", id);
+        LOG.info("Getting person with id: {}", id);
         Person person = personService.getPersonById(id);
 
         if (person == null) {
-            LOG.info("person with id {} not found, please try again!", id);
+            LOG.info("Person with id {} not found, please try again!", id);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -102,7 +102,7 @@ public class PersonController {
 
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/person/{id}")
     public ResponseEntity<Void> deletePerson(@PathVariable("id") Integer id) {
 
         LOG.info("Deleting person with id: {}", id);

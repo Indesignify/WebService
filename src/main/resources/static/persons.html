@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>Web form for SPB IAC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="/js/persons.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Persons simple web form</h2>
+
+    <div class="row col-md-9">
+        <form id="personsForm">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="number" class="form-control" id="id" placeholder="Введите id"/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию"/>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Имя:</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Введите фамилию"/>
+            </div>
+            <div class="form-group">
+                <label for="middleName">Отчество:</label>
+                <input type="text" class="form-control" id="middleName" placeholder="Введите отчество"/>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">Дата рождения:</label>
+                <input type="date" class="form-control" id="birthDate"
+                       placeholder="Введите дату рождения в формате dd.MM.yyyy"/>
+            </div>
+            <button style="margin-bottom:10px" id="createPersonBtnId" type="button" class="btn btn-default">Добавить</button>
+            <button style="margin-bottom:10px" id="getPersonByIdBtnId" type="button" class="btn btn-default">Получить</button>
+            <button style="margin-bottom:10px" id="updatePersonBtnId" type="button" class="btn btn-default">Обновить</button>
+            <button style="margin-bottom:10px" id="deletePersonBtnId" type="button" class="btn btn-default">Удалить</button>
+        </form>
+
+        <!-- Table of persons -->
+        <table id="personsTable" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Выбрать</th>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Дата Рождения</th>
+                <th>Комментарий</th>
+                <th>Дата обновления</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div id="postResultDiv" class="row">
+        </div>
+
+        <div id="getResultDiv" class="row">
+        </div>
+
+        <div id="updateResultDiv" class="row">
+        </div>
+
+        <div id="deleteResultDiv" class="row">
+        </div>
+
+        <button id="getAllPersonsBtnId" style="margin-bottom:10px" type="button" class="btn btn-secondary">Заполнить таблицу</button>
+        <button id="handlePersonsBtnId" style="margin-bottom:10px" type="button" class="btn btn-primary">Обработать данные</button>
+
+    </div>
+</div>
+</body>
+</html>

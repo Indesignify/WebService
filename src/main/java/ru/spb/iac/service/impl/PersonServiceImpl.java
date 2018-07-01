@@ -26,25 +26,6 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person createPerson(CreatePersonDTO newPersonDTO) {
 
-        if (newPersonDTO.getId() != null) {
-//            if (personRepository.existsById(newPersonDTO.getId())) {
-//                throw new IllegalArgumentException("Person with id " + newPersonDTO.getId()
-//                        + " already exists, try again!");
-//            }
-
-            Person newPerson = Person.builder()
-                                .id(newPersonDTO.getId())
-                                .lastName(newPersonDTO.getLastName())
-                                .firstName(newPersonDTO.getFirstName())
-                                .middleName(newPersonDTO.getMiddleName())
-                                .birthDate(newPersonDTO.getBirthDate())
-                                .build();
-
-            personRepository.save(newPerson);
-
-            return newPerson;
-        }
-
         Person newPerson = personConverter.convertCreatePersonDTOToPerson(newPersonDTO);
 
         personRepository.save(newPerson);
