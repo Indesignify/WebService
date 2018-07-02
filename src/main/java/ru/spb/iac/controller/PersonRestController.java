@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.spb.iac.model.dto.CreatePersonDTO;
+import ru.spb.iac.model.dto.HandlePersonsDTO;
 import ru.spb.iac.model.dto.UpdatePersonDTO;
 import ru.spb.iac.model.entities.Person;
 import ru.spb.iac.service.PersonService;
@@ -121,8 +122,8 @@ public class PersonRestController {
     @PostMapping(value = "/handle",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> handlePersons(List<Person> personsToHandle) {
-        return personService.handlePersons(personsToHandle);
+    public List<Person> handlePersons(HandlePersonsDTO handlePersonsDTO) {
+        return personService.handlePersons(handlePersonsDTO);
     }
 
 }

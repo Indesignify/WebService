@@ -1,6 +1,7 @@
 package ru.spb.iac.service;
 
 import ru.spb.iac.model.dto.CreatePersonDTO;
+import ru.spb.iac.model.dto.HandlePersonsDTO;
 import ru.spb.iac.model.dto.UpdatePersonDTO;
 import ru.spb.iac.model.entities.Person;
 
@@ -18,7 +19,7 @@ public interface PersonService {
 
     void deletePersonById(Integer id);
 
-    List<Person> handlePersons(List<Person> persons);
+    List<Person> handlePersons(HandlePersonsDTO handlePersonsDTO);
 
     boolean isPersonExist(Integer id);
 

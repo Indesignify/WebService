@@ -3,6 +3,7 @@ package ru.spb.iac.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.spb.iac.model.dto.CreatePersonDTO;
+import ru.spb.iac.model.dto.HandlePersonsDTO;
 import ru.spb.iac.model.dto.UpdatePersonDTO;
 import ru.spb.iac.model.entities.Person;
 import ru.spb.iac.repository.PersonRepository;
@@ -10,6 +11,10 @@ import ru.spb.iac.service.PersonService;
 import ru.spb.iac.service.converters.PersonConverter;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,8 +79,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> handlePersons(List<Person> persons) {
-        return null;
+    public List<Person> handlePersons(HandlePersonsDTO handlePersonsDTO) {
+
+        List<Person> handledPersons = new ArrayList<>();
+
+        for (Integer id : handlePersonsDTO.getPersonsIDs()) {
+            Person personToHandle = personRepository.findPersonById(id);
+            personToHandle.setComment("Обработано " + System.currentTimeMillis());
+            personToHandle.setUpdateDate(new Timestamp(System.currentTimeMillis()));
+
+            personRepository.save(personToHandle);
+
+            handledPersons.add(personToHandle);
+        }
+
+        return handledPersons;
+
     }
 
     @Override
