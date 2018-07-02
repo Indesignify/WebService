@@ -10,6 +10,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+    <!-- include the jQuery validation plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <!-- additional validation plugin for bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
     <script src="/js/persons.js"></script>
 </head>
 <body>
@@ -19,31 +25,31 @@
     <h2>Persons simple web form</h2>
 
     <div class="row col-md-9">
-        <form id="personsForm">
-            <div class="form-group">
+        <form id="personsForm" data-toggle="validator">
+            <div class="form-group has-feedback">
                 <label for="id">ID:</label>
                 <input type="number" class="form-control" id="id" placeholder="Введите id"/>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="lastName">Фамилия:</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию"/>
+                <input type="text" class="form-control" id="lastName" pattern="[а-яА-Я]+" data-error="Разрешены только русские буквы" placeholder="Введите фамилию" required/>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="firstName">Имя:</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Введите фамилию"/>
+                <input type="text" class="form-control" id="firstName" pattern="[а-яА-Я]+" data-error="Разрешены только русские буквы" placeholder="Введите фамилию" required/>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="middleName">Отчество:</label>
-                <input type="text" class="form-control" id="middleName" placeholder="Введите отчество"/>
+                <input type="text" class="form-control" id="middleName" pattern="[а-яА-Я]+" data-error="Разрешены только русские буквы" placeholder="Введите отчество" required/>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
                 <label for="birthDate">Дата рождения:</label>
                 <input type="date" class="form-control" id="birthDate"
-                       placeholder="Введите дату рождения в формате dd.MM.yyyy"/>
+                       placeholder="Введите дату рождения в формате dd.MM.yyyy" required/>
             </div>
-            <button style="margin-bottom:10px" id="createPersonBtnId" type="button" class="btn btn-default">Добавить</button>
+            <button style="margin-bottom:10px" id="createPersonBtnId" type="submit" class="btn btn-default">Добавить</button>
             <button style="margin-bottom:10px" id="getPersonByIdBtnId" type="button" class="btn btn-default">Получить</button>
-            <button style="margin-bottom:10px" id="updatePersonBtnId" type="button" class="btn btn-default">Обновить</button>
+            <button style="margin-bottom:10px" id="updatePersonBtnId" type="submit" class="btn btn-default">Обновить</button>
             <button style="margin-bottom:10px" id="deletePersonBtnId" type="button" class="btn btn-default">Удалить</button>
         </form>
 

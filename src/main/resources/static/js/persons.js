@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     $("#createPersonBtnId").click(function (event) {
         event.preventDefault();
+
         ajaxPostPerson();
     });
 
@@ -118,14 +119,14 @@ $(document).ready(function () {
         $.ajax({
             type: 'DELETE',
             url: currentUrl + "rest-api/person/" + $("#id").val(),
-            success: function(){
+            success: function () {
                 $("#deleteResultDiv").html(
                     "<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
                     "Delete person results: person with id = " + $("#id").val() +
                     " was successfully deleted!"
                 );
             },
-            error: function(){
+            error: function () {
                 $("#deleteResultDiv").html(
                     "<p style='background-color:red; color:white; padding:20px 20px 20px 20px'>" +
                     "Something went wrong! Please read logs for more information."
