@@ -18,6 +18,7 @@
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
         <spring.webmvc.version>5.0.7.RELEASE</spring.webmvc.version>
         <jackson.version>2.9.6</jackson.version>
+        <spring.security.version>3.2.3.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -104,6 +105,30 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- useful thymeleaf tags for Spring Security -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
         </dependency>
 
     </dependencies>
